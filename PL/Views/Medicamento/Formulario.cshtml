@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Formulario";
+}
+
+<h2>Respuesta</h2>
+
+@if (ViewBag.Success)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+@Html.ActionLink("Regresar", "GetAll", "Medicamento", htmlAttributes: new { @class = "btn btn-danger" })

@@ -1,0 +1,53 @@
+﻿@model ML.Result
+@{
+    ViewBag.Title = "GetAll";
+}
+
+<h2>Medicamentos</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Selecciona el botón verde "+" para añadir nuevos elementos.</h4>
+        </div>
+        <div class="col-md-6">
+            @Html.ActionLink("+", "Form", "Medicamento", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha de caducidad</th>
+                <th>Precio unitario</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ML.Medicamento medicamento in Model.Objects)
+            {
+                <tr>
+                    <td><a class="btn btn-warning" href="@Url.Action("Form", "Medicamento", new { idMedicamento = medicamento.IdMedicamento })">Editar</a></td>
+                    <td>@medicamento.IdMedicamento</td>
+                    <td>@medicamento.Nombre</td>
+                    <td>@medicamento.Descripcion</td>
+                    <td>@medicamento.FechaCaducidad</td>
+                    <td>$@medicamento.PrecioUnitario C/U</td>
+                    <td>@medicamento.Stock</td>
+                    <td>@medicamento.Proveedor.Nombre</td>
+                    <td><a class="btn btn-danger" href="@Url.Action("Delete", "Medicamento", new { idMedicamento = medicamento.IdMedicamento })" onclick = "return confirm('¿Estás seguro que deseas eliminar el medicamento?');">Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

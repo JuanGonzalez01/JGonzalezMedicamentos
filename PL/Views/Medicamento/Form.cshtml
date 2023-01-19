@@ -1,0 +1,80 @@
+﻿@model ML.Medicamento
+@{
+    ViewBag.Title = "Form";
+}
+
+<h2>Formulario de medicamento</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Formulario", "Medicamento", FormMethod.Post, new {enctype = "multipart/form-data"} ))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div style="display:none">
+                    @Html.TextBoxFor(Model => Model.IdMedicamento, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Nombre:")
+                            @Html.TextBoxFor(Model => Model.Nombre, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Descripción:")
+                            @Html.TextBoxFor(Model => Model.Descripcion, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Fecha de caducidad:")
+                            @Html.TextBoxFor(Model => Model.FechaCaducidad, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Precio unitario:")
+                            @Html.TextBoxFor(Model => Model.PrecioUnitario, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Stock:")
+                            @Html.TextBoxFor(Model => Model.Stock, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Label("Proveedor:")
+                            @Html.DropDownListFor(Model => Model.Proveedor.IdProveedor, new SelectList(Model.Proveedor.Proveedores, "IdProveedor", "Nombre"), "- Selecciona un proveedor", new {@class="form-control"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-success" value="Guardar" />
+                @Html.ActionLink("Regresar", "GetAll", "Medicamento", htmlAttributes: new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>
